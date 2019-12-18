@@ -12,6 +12,7 @@ const app = express();
 // db connection
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
+mongoose.set('keepAlive', true);
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then (() =>{
