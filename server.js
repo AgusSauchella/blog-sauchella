@@ -4,8 +4,8 @@ const router = require('./routes/index');
 //config vars
 const port = process.env.PORT || 3000;
 
-mongodb.set('useUnifiedTopology',true);
-mongodb.set('useFindAndModify',false);
+MongoClient.set('useUnifiedTopology',true);
+MongoClient.set('useFindAndModify',false);
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://sauchella:<password>@cluster0-pfie2.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
