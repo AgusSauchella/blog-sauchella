@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const db = process.env.MONGODB_URI||'mongodb://localhost/blog-sauchella';
 
 //db connection
-mongoose.set('useUnifiedTopology', false);
+mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
 mongoose
   .connect(db, { useNewUrlParser: true })
