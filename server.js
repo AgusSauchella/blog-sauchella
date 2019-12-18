@@ -5,17 +5,16 @@ const router = require('./routes/index');
 const port = process.env.PORT || 3000;
 const db = process.env.MONGODB_URI||'mongodb://localhost/blog-sauchella';
 
-
+//db connection
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://sauchella:blog@cluster0-pfie2.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then (() =>{
+  console.log(`DB connected in port ${port}`);
+  })
+  .catch(err => console.error(`Connection error ${err}`));
+  
 const app= express();
 app.set('view engine','pug');
 app.set('views', './views');
