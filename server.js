@@ -6,7 +6,8 @@ const port = process.env.PORT || 3000;
 const db = process.env.MONGODB_URI||'mongodb://localhost/blog-sauchella';
 
 
-
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindAndModify', false);
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://sauchella:blog@cluster0-pfie2.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
