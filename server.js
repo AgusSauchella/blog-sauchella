@@ -3,7 +3,7 @@ const mongoose = require ('mongoose');
 const router = require('./routes/index');
 //config vars
 const port = process.env.PORT || 3000;
-const db = process.env.MONGODB_URI||'mongodb://localhost/blog-sauchella';
+const db = process.env.MONGODB_URI||'mongodb+srv://sauchella:blog@cluster0-pfie2.mongodb.net/test?retryWrites=true&w=majority';
 
 
 mongoose.set('useUnifiedTopology', true);
