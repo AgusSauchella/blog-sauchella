@@ -19,7 +19,7 @@ mongoose
   })
   .catch(err => console.error(`Connection error ${err}`));
   
-  const app= express();
+
 app.set('view engine','pug');
 app.set('views', './views');
 app.use(express.json());
