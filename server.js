@@ -15,6 +15,13 @@ client.connect(err => {
   // perform actions on the collection object
   client.close();
 });
+const app= express();
+app.set('view engine','pug');
+app.set('views', './views');
+app.use(express.json());
+app.use(express.urlencoded({extended : false}));
+app.use('/', router);   
+  
 
 
 
