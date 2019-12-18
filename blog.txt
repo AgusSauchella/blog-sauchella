@@ -1,1 +1,0 @@
-mongodb+srv://sauchella:blog@cluster0-pfie2.mongodb.net/blog-sauchella?retryWrites=true&w=majority
