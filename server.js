@@ -1,11 +1,15 @@
-const express = require ('express');
-const mongoose = require ('mongoose');
+const express  = require('express');
+const mongoose = require('mongoose');
 const router = require('./routes/index');
-//config vars
-const port = process.env.PORT || 3000;
-const db = process.env.MONGODB_URI||'mongodb+srv://sauchella:blog@cluster0-pfie2.mongodb.net/test?retryWrites=true&w=majority';
 
 
+// config vars
+const db   = process.env.MONGODB_URI || 'mongodb://localhost/blog-sauchella';
+const port = process.env.PORT        || 3000;
+
+const app = express();
+
+// db connection
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
 mongoose
@@ -15,20 +19,20 @@ mongoose
   })
 .catch(err => console.error(`Connection error ${err}`));
 
-  
-const app= express();
-app.set('view engine','pug');
+// set views
+app.set('view engine', 'pug');
 app.set('views', './views');
+
+// middleware
 app.use(express.json());
-app.use(express.urlencoded({extended : false}));
-app.use('/', router);   
-  
+app.use(express.urlencoded({ extended: false }));
+app.use('/uploads', express.static('uploads'));
+app.use(express.static('public'));
 
+// set routes
+app.use('/', router);
+app.use('/api', photoRouter);
 
-
-
-//listen
-app.listen(port , () => {
- console.log(`server listening on port ${port}`);
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
-
