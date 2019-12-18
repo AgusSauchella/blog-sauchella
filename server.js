@@ -10,15 +10,16 @@ const port = process.env.PORT        || 3000;
 const app = express();
 
 // db connection
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useFindAndModify', false);
-mongoose
-  .connect(db, { useNewUrlParser: true })
-  .then(() => {
-    console.log(`DB connected @ ${db}`);
-  })
-.catch(err => console.error(`Connection error ${err}`));
+const URI = 'mongodb+srv://dbfahad:dbfahad@cluster0-l6cmf.gcp.mongodb.net/test?retryWrites=true&w=majority'
 
+mongoose.Promise = global.Promise
+
+const connectDB = async () => {
+mongoose.connect(URI, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true})
+console.log('DB Connected....');
+}
+
+module.exports = connectDB
 // set views
 app.set('view engine', 'pug');
 app.set('views', './views');
