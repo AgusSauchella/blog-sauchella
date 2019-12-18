@@ -3,17 +3,17 @@ const mongoose = require ('mongoose');
 const router = require('./routes/index');
 //config vars
 const port = process.env.PORT || 3000;
+const db = process.env.MONGODB_URI||'mongodb://localhost/blog-sauchella';
 
-MongoClient.set('useUnifiedTopology',true);
-MongoClient.set('useFindAndModify',false);
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://sauchella:<password>@cluster0-pfie2.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindAndModify', false);
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => {
+    console.log(`DB connected @ ${db}`);
+  })
+.catch(err => console.error(`Connection error ${err}`));
 
   
 const app= express();
